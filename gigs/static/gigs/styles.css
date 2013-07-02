@@ -1,0 +1,6 @@
+.errorlist {
+  list-style: none;
+}
+.errorlist li {
+  color: #f00;
+}

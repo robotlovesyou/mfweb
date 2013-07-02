@@ -13,13 +13,13 @@ from django.utils.unittest import skip
 from gigs.models import Gig
 
 """
-Behaviour Tests
+View Tests
 """
 
 
 class AdminTests(TestCase):
     """
-    Behaviour tests for the admin system
+    View tests for the admin system
     """
 
     def setUp(self):
@@ -35,6 +35,17 @@ class AdminTests(TestCase):
 
     def tearDown(self):
         self.test_user.delete()
+
+    def log_in_test_client(self):
+        """
+        Log in the test client using the test user
+        """
+        result = self.client.login(
+            username=self.test_user_name,
+            password=self.test_password
+        )
+
+        self.assertTrue(result)
 
     def test_can_view_admin_log_in(self):
         """
@@ -71,29 +82,55 @@ class AdminTests(TestCase):
         response = self.client.get(reverse('gigs:admin'))
         self.assertEqual(response.status_code, 302)
 
-    @skip("Skipping tra la la")
     def test_can_view_add_gig_with_login(self):
         """
         Ensure that a logged in client can view the add gigs screen
         """
-        result = self.client.login(
-            username=self.test_user_name,
-            password=self.test_password
-        )
+        self.log_in_test_client()
 
-        self.assertTrue(result)
-
-        response = self.client.get(reverse('gigs:add_gig'))
+        response = self.client.get(reverse('gigs:admin_create'))
         self.assertEqual(response.status_code, 200)
 
+    def test_cannot_view_add_gig_without_login(self):
+        """
+        Ensure that a client who is not logged in cannot view
+        the add gigs screen
+        """
+        response = self.client.get(reverse('gigs:admin_create'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_can_create_a_gig_with_a_login(self):
+        """
+        Ensure that a login is required to create a gig
+        """
+        self.log_in_test_client()
+        response = self.client.post(
+            reverse('gigs:admin_create'),
+            {'title': 'wibble', 'date': '01/01/2050'}
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_cannot_create_a_gig_with_invalid_data(self):
+        """
+        Ensure that invalid gig data causes the screen to display
+        an error
+        """
+        self.log_in_test_client()
+        response = self.client.post(
+            reverse('gigs:admin_create'),
+            {'title': 'wibble', 'date': 'wibble'}
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(re.search(b'Enter a valid date', response.content))
+
 """
-Unit Tests
+Model Tests
 """
 
 
 class GigModelTests(TestCase):
     """
-    Unit tests for the gig model and the gig model manager
+    Model tests for the gig model and the gig model manager
     """
     def test_can_instantiate(self):
         """

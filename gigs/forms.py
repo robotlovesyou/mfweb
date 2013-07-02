@@ -9,3 +9,4 @@ class GigForm(ModelForm):
     """
     class Meta:
         model = Gig
+        fields = ('title', 'date', 'url')
