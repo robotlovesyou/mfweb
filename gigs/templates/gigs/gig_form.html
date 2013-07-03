@@ -1,5 +1,5 @@
 {% extends 'gigs/admin_base.html' %}
-
+{% load gig_filters %}
 {% block content%}
 <p>
   <span>
@@ -13,7 +13,7 @@
     {% for field in form.visible_fields %}
     <div class="pure-control-group">
       {{field.errors}}
-      {{ field.label_tag }} {{ field }}
+      {{ field.label_tag }} {{ field|with_classes:"pure-input-1-4" }}
     </div>
     {% endfor %}
     <div class="pure-controls">
