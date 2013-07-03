@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from gigs.models import Gig
 from gigs.forms import GigForm
@@ -28,3 +28,12 @@ class GigCreateView(CreateView):
         """
         messages.success(self.request, 'Gig Created')
         return super(CreateView, self).form_valid(form)
+
+
+class GigUpdateView(UpdateView):
+    """
+    Admin View to edit gigs
+    """
+    model = Gig
+    form_class = GigForm
+    success_url = reverse_lazy('gigs:admin')

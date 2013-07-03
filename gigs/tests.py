@@ -36,7 +36,7 @@ class AdminTests(TestCase):
     def tearDown(self):
         self.test_user.delete()
 
-    def log_in_test_client(self):
+    def login_test_client(self):
         """
         Log in the test client using the test user
         """
@@ -46,6 +46,15 @@ class AdminTests(TestCase):
         )
 
         self.assertTrue(result)
+
+    def create_test_gig(self):
+        """
+        Gig test fixture
+        """
+        return Gig.objects.create_gig(
+            'wibble',
+            timezone.now() + datetime.timedelta(days=1)
+        )
 
     def test_can_view_admin_log_in(self):
         """
@@ -86,7 +95,7 @@ class AdminTests(TestCase):
         """
         Ensure that a logged in client can view the add gigs screen
         """
-        self.log_in_test_client()
+        self.login_test_client()
 
         response = self.client.get(reverse('gigs:admin_create'))
         self.assertEqual(response.status_code, 200)
@@ -103,7 +112,7 @@ class AdminTests(TestCase):
         """
         Ensure that a login is required to create a gig
         """
-        self.log_in_test_client()
+        self.login_test_client()
         response = self.client.post(
             reverse('gigs:admin_create'),
             {'title': 'wibble', 'date': '01/01/2050'}
@@ -115,7 +124,7 @@ class AdminTests(TestCase):
         Ensure that invalid gig data causes the screen to display
         an error
         """
-        self.log_in_test_client()
+        self.login_test_client()
         response = self.client.post(
             reverse('gigs:admin_create'),
             {'title': 'wibble', 'date': 'wibble'}
@@ -123,6 +132,42 @@ class AdminTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(re.search(b'Enter a valid date', response.content))
 
+    def test_can_view_edit_gig_with_login(self):
+        """
+        Ensure that the edit screen for a gig can be viewed by a logged
+        in user
+        """
+        gig = self.create_test_gig()
+        self.login_test_client()
+        response = self.client.get(reverse(
+            'gigs:admin_update',
+            kwargs={'pk': gig.pk}
+        ))
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_cannot_view_edit_gig_without_login(self):
+        """
+        Ensure that the gig edit screen requires a login
+        """
+        gig = self.create_test_gig()
+        response = self.client.get(reverse(
+            'gigs:admin_update',
+            kwargs={'pk': gig.pk}
+        ))
+
+        self.assertEqual(response.status_code, 302)
+
+    def test_can_edit_gig(self):
+        """
+        Ensure we can edit a gig
+        """
+        gig = self.create_test_gig()
+        response = self.client.post(
+            reverse('gigs:admin_update', kwargs={'pk': gig.pk}),
+            {'pk': gig.pk, 'title': 'Big Boots', 'date': gig.date}
+        )
+        self.assertTrue(response.status_code, 302)
 """
 Model Tests
 """
@@ -185,3 +230,14 @@ class GigModelTests(TestCase):
             url='iamabadurl'
         )
         self.assertRaises(ValidationError, gig.full_clean)
+
+    def test_can_create_gig_with_gig_manager(self):
+        """
+        Ensure that the gig manager create_gig method
+        creates a gig
+        """
+        gig = Gig.objects.create_gig(
+            'wibble', timezone.now() + datetime.timedelta(days=1)
+        )
+        self.assertIsInstance(gig, Gig)
+        self.assertNotEqual(gig.pk, None)

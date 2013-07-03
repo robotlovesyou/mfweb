@@ -4,3 +4,6 @@
 .errorlist li {
   color: #f00;
 }
+body.admin {
+  width: 960px;
+}
