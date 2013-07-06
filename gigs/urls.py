@@ -17,7 +17,12 @@ urlpatterns = patterns(
         r'admin/update/(?P<pk>\d+)/$',
         login_required(views.GigUpdateView.as_view()),
         name='admin_update'
-    )
+    ),
+    url(
+        r'admin/delete/(?P<pk>\d+)/$',
+        login_required(views.GigDeleteView.as_view()),
+        name='admin_delete'
+    ),
     #url(r'^$', views.IndexView.as_view(), name='index'),
     #url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
     #url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),

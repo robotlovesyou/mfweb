@@ -1,0 +1,13 @@
+{% extends 'gigs/admin_base.html' %}
+{% load gig_filters %}
+{% block content %}
+<p>{{gig.title}}</p>
+<p>{{gig.date}}</p>
+<p>{{gig.url}}</p>
+<form action="{% url 'gigs:admin_delete' pk=gig.pk %}" method="post" class="pure-form">
+  {% csrf_token %}
+  <div class="pure-controls">
+    <button type="submit" class="pure-button">Delete</button>
+  </div>
+</form>
+{% endblock %}

@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
-from django.utils.unittest import skip
+#from django.utils.unittest import skip
 
 from gigs.models import Gig
 
@@ -168,6 +168,37 @@ class AdminTests(TestCase):
             {'pk': gig.pk, 'title': 'Big Boots', 'date': gig.date}
         )
         self.assertTrue(response.status_code, 302)
+
+    def test_can_view_delete_gig(self):
+        """
+        Ensure the gig delete page is visible to logged in users
+        """
+        gig = self.create_test_gig()
+        self.login_test_client()
+        response = self.client.get(
+            reverse('gigs:admin_delete', kwargs={'pk': gig.pk})
+        )
+        self.assertEqual(response.status_code, 200)
+
+    def test_cannot_view_delete_gig_without_authentication(self):
+        """
+        Ensure that unauthenticated users cannot view the delete gig page
+        """
+        gig = self.create_test_gig()
+        response = self.client.get(
+            reverse('gigs:admin_delete', kwargs={'pk': gig.pk})
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_can_delete_gig(self):
+        gig = self.create_test_gig()
+        self.login_test_client()
+        response = self.client.post(
+            reverse('gigs:admin_delete', kwargs={'pk': gig.pk}),
+            {}
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertRaises(Gig.DoesNotExist, Gig.objects.get, pk=gig.pk, deleted=False)
 """
 Model Tests
 """
@@ -241,3 +272,14 @@ class GigModelTests(TestCase):
         )
         self.assertIsInstance(gig, Gig)
         self.assertNotEqual(gig.pk, None)
+
+    def test_can_mark_gig_deleted(self):
+        """
+        Ensure that a gig can be marked as deleted
+        """
+        gig = Gig.objects.create_gig(
+            'wibble', timezone.now() + datetime.timedelta(days=1)
+        )
+        gig.delete()
+        gig_from_db = Gig.objects.get(pk=gig.pk)
+        self.assertTrue(gig_from_db.deleted)

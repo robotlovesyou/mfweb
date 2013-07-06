@@ -3,14 +3,15 @@ from django.template import Library
 register = Library()
 
 
-@register.filter(name='with_classes', is_safe=True)
-def with_classes(field, classes):
+def set_widget_attribute(field, attribute, value):
+    field.widget.attrs[attribute] = value
+
+
+@register.filter(name='with_class', is_safe=True)
+def with_class(boundfield, class_val):
     """
     render a field with the additional classes set
     """
-    if field.field.widget.attrs.get('class'):
-        field.field.widget.attrs['class'] += ' ' + classes
-    else:
-        field.field.widget.attrs['class'] = classes
+    set_widget_attribute(boundfield.field, 'class', class_val)
 
-    return field
+    return boundfield

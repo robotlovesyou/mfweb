@@ -33,3 +33,7 @@ class Gig(models.Model):
 
     #Set the custom manager object
     objects = GigManager()
+
+    def delete(self):
+        self.deleted = True
+        self.save()
