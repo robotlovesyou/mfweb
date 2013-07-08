@@ -1,0 +1,49 @@
+{% extends 'gigs/admin_base.html' %}
+{% load gig_filters %}
+{% block title%}
+  Administration
+{% endblock %}
+{% block content %}
+<h1 class="admin-header">Administration > Manage Gigs</h1>
+
+<p>
+  <a class="pure-button" href="{% url 'gigs:admin_create' %}">Add New Gig</a>
+  <a class="pure-button button-error" href="{% url 'gigs:logout' %}">Log Out</a>
+</p>
+<table class="pure-table admin-table">
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Url
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    {% for gig in gigs %}
+      <tr>
+        <td>
+          {{gig.title}}
+        </td>
+        <td>
+          {{gig.date}}
+        </td>
+        <td>
+          {{gig.url}}
+        </td>
+        <td>
+          <a class="pure-button" href="{% url 'gigs:admin_update' pk=gig.pk %}">Edit</a>
+        </td>
+        <td>
+          <a class="pure-button button-error" href="{% url 'gigs:admin_delete' pk=gig.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </thead>
+</table>
+{% endblock %}

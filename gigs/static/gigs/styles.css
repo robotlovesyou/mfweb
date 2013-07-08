@@ -6,4 +6,31 @@
 }
 body.admin {
   width: 960px;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+body.admin .admin-header {
+  margin: 20px 20px 20px 0px;
+  color: #2b538a;
+}
+body.admin .admin-table {
+  border: 1px solid #7285a0;
+}
+body.admin .admin-table th {
+  background-color: #2b538a;
+  color: #fff;
+}
+body.admin .admin-table tr:nth-of-type(even) {
+  background: #fff;
+}
+body.admin .admin-table tr:nth-of-type(odd) {
+  background: #d5dfed;
+}
+body.admin .admin-table td,
+body.admin .admin-table th {
+  border-left: 1px solid #7285a0;
+}
+body.admin .button-error {
+  background: #ca3c3c;
+/* this is a maroon */
 }

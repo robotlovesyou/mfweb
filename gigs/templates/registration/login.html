@@ -5,7 +5,7 @@
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
+<h1 class="admin-header">Administration > Log In</h1>
 <form class="pure-form pure-form-aligned" method="post" action="{% url 'gigs:login' %}">
 {% csrf_token %}
   <formset>

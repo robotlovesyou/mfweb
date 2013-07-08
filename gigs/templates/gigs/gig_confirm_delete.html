@@ -1,6 +1,8 @@
 {% extends 'gigs/admin_base.html' %}
 {% load gig_filters %}
+{% block title %}Delete Gig{% endblock %}
 {% block content %}
+<h1 class="admin-header">Administration > Delete Gig</h1>
 <p>{{gig.title}}</p>
 <p>{{gig.date}}</p>
 <p>{{gig.url}}</p>

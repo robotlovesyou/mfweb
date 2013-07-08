@@ -1,12 +1,14 @@
 {% extends 'gigs/admin_base.html' %}
 {% load gig_filters %}
+{% block title %}Add/Edit Gig{% endblock %}
 {% block content%}
+<h1 class="admin-header">Administration > Add/Edit Gig</h1>
 <p>
   <span>
     Enter the details of the gig
   </span>
 </p>
-<form action="{% url 'gigs:admin_create'%}" method="post" class="pure-form pure-form-aligned">
+<form action="" method="post" class="pure-form pure-form-aligned">
   {{form.non_field_errors}}
   {% csrf_token %}
   <formset>

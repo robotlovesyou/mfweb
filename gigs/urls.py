@@ -1,13 +1,18 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout_then_login
 
 from gigs import views
 
 urlpatterns = patterns(
     '',
     url(r'^login/$', login, name='login'),
-    url(r'^admin/$', views.admin, name='admin'),
+    url(r'^logout/$', logout_then_login, name='logout'),
+    url(
+        r'^admin/$',
+        login_required(views.GigAdminListView.as_view()),
+        name='admin'
+    ),
     url(
         r'^admin/create/$',
         login_required(views.GigCreateView.as_view()),

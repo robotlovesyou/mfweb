@@ -1,4 +1,10 @@
 //Style django error lists
+mid-blue = #83A6D5
+dark-blue = #2B538A
+grey-blue = #7285A0
+light-blue = #A6C3EA
+lighter-blue = #B8CDEA
+lightest-blue = #D5DFED
 .errorlist
   list-style none
   li
@@ -6,3 +12,30 @@
 
 body.admin
   width 960px
+  padding-left 2.5%
+  padding-right 2.5%
+
+  .admin-header
+    margin 20px 20px 20px 0px
+    color dark-blue
+
+  .admin-table
+    border 1px solid grey-blue;
+
+    th
+      background-color dark-blue
+      color white
+
+    tr:nth-of-type(even)
+        background white
+
+    tr:nth-of-type(odd)
+        background lightest-blue
+
+    td,
+    th
+      border-left 1px solid grey-blue;    
+
+
+  .button-error
+    background: rgb(202, 60, 60); /* this is a maroon */

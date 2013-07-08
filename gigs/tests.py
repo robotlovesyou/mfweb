@@ -91,6 +91,14 @@ class AdminTests(TestCase):
         response = self.client.get(reverse('gigs:admin'))
         self.assertEqual(response.status_code, 302)
 
+    def test_can_view_admin_index(self):
+        """
+        Tests that a logged in user can view the admin index
+        """
+        self.login_test_client()
+        response = self.client.get(reverse('gigs:admin'))
+        self.assertEqual(response.status_code, 200)
+
     def test_can_view_add_gig_with_login(self):
         """
         Ensure that a logged in client can view the add gigs screen
@@ -199,6 +207,8 @@ class AdminTests(TestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertRaises(Gig.DoesNotExist, Gig.objects.get, pk=gig.pk, deleted=False)
+
+
 """
 Model Tests
 """

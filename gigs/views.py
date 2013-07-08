@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.views.generic.base import View
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from gigs.models import Gig
@@ -20,9 +21,10 @@ def csrf_render_to_response(request, template, context):
     return render_to_response(template, context)
 
 
-@login_required
-def admin(request):
-    return HttpResponse("Welcome to the admin page")
+class GigAdminListView(ListView):
+    context_object_name = 'gigs'
+    queryset = Gig.objects.filter(deleted=False).order_by('date')
+    template_name = 'gigs/admin_gig_list.html'
 
 
 class GigCreateView(CreateView):
@@ -63,8 +65,8 @@ class GigDeleteView(View):
 
     def get(self, request, *args, **kwargs):
         return csrf_render_to_response(
-            request, 
-            self.template_name, 
+            request,
+            self.template_name,
             {'gig': self.gig}
         )
 
