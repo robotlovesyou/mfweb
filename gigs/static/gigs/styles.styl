@@ -20,7 +20,7 @@ body.admin
     color dark-blue
 
   .admin-table
-    border 1px solid grey-blue;
+    border 1px solid grey-blue
 
     th
       background-color dark-blue
@@ -39,3 +39,73 @@ body.admin
 
   .button-error
     background: rgb(202, 60, 60); /* this is a maroon */
+
+body.gigs
+  margin auto /* center in viewport */
+  background lighter-blue
+  font-family 'Roboto', sans-serif
+  font-weight 400
+
+  .masthead
+    background dark-blue
+    color white
+    overflow hidden
+
+    .masthead-logo
+      a
+        text-decoration none
+        color white
+
+      h1
+        font-weight 100
+        margin 5px
+
+    .masthead-menu
+      ul
+        list-style none
+        margin 0px
+        padding 0px
+        li
+          display block
+          float left
+          margin 0px
+          padding 0px
+
+          a
+            text-decoration none
+            font-size 20px
+            font-weight 100
+            color white
+            display inline-block
+            line-height 53px
+            padding 0px 10px
+
+          a:hover
+            background mid-blue
+
+          a.selected
+            background mid-blue
+
+  .content
+    background mid-blue
+
+    .content-left,
+    .content-right
+      color white
+
+    .content-right
+      height 512px
+
+
+
+  .content-center
+    color white
+    background-color mid-blue
+
+// @media (min-width: 980px)
+//   body.gigs
+//     width 960px
+
+// @media (min-width: 768px) and (max-width: 979px)
+//   body.gigs
+//     width 760px

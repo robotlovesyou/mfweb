@@ -1,8 +1,17 @@
 <html>
 <head>
-  <title></title>
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  {% load staticfiles %}
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/base-min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'gigs/base.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'gigs/styles.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="pure-skin-mfweb gigs">
 {% block content %}
 {% endblock %}
 </body>

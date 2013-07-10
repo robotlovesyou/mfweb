@@ -21,6 +21,12 @@ def csrf_render_to_response(request, template, context):
     return render_to_response(template, context)
 
 
+class HomePageView(ListView):
+    context_object_name = 'gigs'
+    queryset = Gig.objects.filter(deleted=False).order_by('date')[:5]
+    template_name = 'gigs/home.html'
+
+
 class GigAdminListView(ListView):
     context_object_name = 'gigs'
     queryset = Gig.objects.filter(deleted=False).order_by('date')

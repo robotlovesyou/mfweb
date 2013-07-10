@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Upcoming Gigs - Michael Fabbri.com
+{% endblock %}
+{% block content%}
+{% load staticfiles %}
+<div class="pure-g-r masthead">
+  <div class="pure-u-1-6"></div>
+  <div class="pure-u-1-3 masthead-logo">
+    <a href="/gigs/">
+      <h1>Michael Fabbri</h1>
+    </a>
+  </div>
+  <div class="pure-u-1-6"></div>
+  <div class="pure-u-1-3 masthead-menu">
+    <ul class="menu">
+      <li><a class="selected" href="#">Home</a></li>
+      <li><a href="#">Gigs</a></li>
+    </ul>
+  </div>
+</div>
+<div class="pure-g-r content">
+  <div class="pure-u-2-5 content-left pure-hidden-phone">
+    <!-- <img src="{% static 'gigs/photo.jpg' %}"> -->
+  </div>
+  <div class="pure-u-3-5 content-right">
+  </div>
+</div>
+{% endblock %}

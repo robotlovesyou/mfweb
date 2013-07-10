@@ -34,3 +34,63 @@ body.admin .button-error {
   background: #ca3c3c;
 /* this is a maroon */
 }
+body.gigs {
+  margin: auto;
+/* center in viewport */
+  background: #b8cdea;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+body.gigs .masthead {
+  background: #2b538a;
+  color: #fff;
+  overflow: hidden;
+}
+body.gigs .masthead .masthead-logo a {
+  text-decoration: none;
+  color: #fff;
+}
+body.gigs .masthead .masthead-logo h1 {
+  font-weight: 100;
+  margin: 5px;
+}
+body.gigs .masthead .masthead-menu ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+body.gigs .masthead .masthead-menu ul li {
+  display: block;
+  float: left;
+  margin: 0px;
+  padding: 0px;
+}
+body.gigs .masthead .masthead-menu ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff;
+  display: inline-block;
+  line-height: 53px;
+  padding: 0px 10px;
+}
+body.gigs .masthead .masthead-menu ul li a:hover {
+  background: #83a6d5;
+}
+body.gigs .masthead .masthead-menu ul li a.selected {
+  background: #83a6d5;
+}
+body.gigs .content {
+  background: #83a6d5;
+}
+body.gigs .content .content-left,
+body.gigs .content .content-right {
+  color: #fff;
+}
+body.gigs .content .content-right {
+  height: 512px;
+}
+body.gigs .content-center {
+  color: #fff;
+  background-color: #83a6d5;
+}

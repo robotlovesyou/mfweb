@@ -17,6 +17,19 @@ View Tests
 """
 
 
+class PublicTests(TestCase):
+    """
+    Tests for the public facing site
+    """
+
+    def test_can_load_gigs_home(self):
+        """
+        Test that the gigs home page loads
+        """
+        response = self.client.get(reverse('gigs:home'))
+        self.assertEqual(response.status_code, 200)
+
+
 class AdminTests(TestCase):
     """
     View tests for the admin system
