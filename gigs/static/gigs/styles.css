@@ -102,6 +102,7 @@ body.gigs .top-content .upcoming-gigs ul {
 }
 body.gigs .top-content .upcoming-gigs li {
   margin-top: 5px;
+  padding-bottom: 5px;
 }
 body.gigs .top-content .upcoming-gigs .title {
   font-weight: 400;
@@ -117,7 +118,7 @@ body.gigs .top-content .upcoming-gigs .url a {
 body.gigs .top-content .michael-image {
   padding: 10px 0px 0px 0px;
   position: relative;
-  min-height: 300px;
+  min-height: 320px;
 }
 body.gigs .top-content .michael-image img {
   position: absolute;
@@ -195,7 +196,10 @@ body.gigs .bottom-content .quoteunit:nth-child(4) .pressquote {
   margin-right: 0px;
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  body.gigs .top-content .michael-image {
-    min-height: 360px;
+}
+@media (max-width:767px) {
+  body.gigs .mid-content .social {
+    margin: 0px;
+    padding: 0px;
   }
 }
