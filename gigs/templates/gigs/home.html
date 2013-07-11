@@ -19,11 +19,250 @@ Upcoming Gigs - Michael Fabbri.com
     </ul>
   </div>
 </div>
-<div class="pure-g-r content">
-  <div class="pure-u-2-5 content-left pure-hidden-phone">
-    <!-- <img src="{% static 'gigs/photo.jpg' %}"> -->
+<div class="pure-g-r top-content">
+  <div class="pure-u-1-6"></div>
+  <div class="pure-u-5-12 upcoming-gigs">
+    <h2>Upcoming Gigs</h2>
+    <ul>
+      {% for gig in gigs %}
+        <li><span class="title">{{gig.title}}</span><br/><span class="date">{{gig.date | date:"l jS F"}}</span><span class="url">{% if gig.url %} - <a href="{{gig.url}}" target="_blank">website</a></span>{% endif %}</li>
+      {% endfor %}
+    </ul>
   </div>
-  <div class="pure-u-3-5 content-right">
+  <div class="pure-u-1-4 michael-image pure-hidden-phone">
+    <img src="{% static 'gigs/MichaelCutout.png' %}">
   </div>
+  <div class="pure-u-1-6"></div>
 </div>
+<div class="pure-g-r mid-content">
+  <div class="pure-u-1-6"></div>
+  <div class="pure-u-5-12">
+    <!-- Begin MailChimp Signup Form -->
+    <div id="mc_embed_signup">
+      <form action="http://michaelfabbri.us7.list-manage1.com/subscribe/post?u=a3adc128de2f0b11c72da16cf&amp;id=ebc39a22ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <h2>Subscribe to my mailing list</h2>
+        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+        <div class="mc-field-group">
+          <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+        </label>
+        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+        </div>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+      </form>
+    </div>
+<script type="text/javascript">
+var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';
+try {
+    var jqueryLoaded=jQuery;
+    jqueryLoaded=true;
+} catch(err) {
+    var jqueryLoaded=false;
+}
+var head= document.getElementsByTagName('head')[0];
+if (!jqueryLoaded) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+    head.appendChild(script);
+    if (script.readyState && script.onload!==null){
+        script.onreadystatechange= function () {
+              if (this.readyState == 'complete') mce_preload_check();
+        }    
+    }
+}
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
+head.appendChild(script);
+var err_style = '';
+try{
+    err_style = mc_custom_error_style;
+} catch(e){
+    err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
+}
+var head= document.getElementsByTagName('head')[0];
+var style= document.createElement('style');
+style.type= 'text/css';
+if (style.styleSheet) {
+  style.styleSheet.cssText = err_style;
+} else {
+  style.appendChild(document.createTextNode(err_style));
+}
+head.appendChild(style);
+setTimeout('mce_preload_check();', 250);
+
+var mce_preload_checks = 0;
+function mce_preload_check(){
+    if (mce_preload_checks>40) return;
+    mce_preload_checks++;
+    try {
+        var jqueryLoaded=jQuery;
+    } catch(err) {
+        setTimeout('mce_preload_check();', 250);
+        return;
+    }
+    try {
+        var validatorLoaded=jQuery("#fake-form").validate({});
+    } catch(err) {
+        setTimeout('mce_preload_check();', 250);
+        return;
+    }
+    mce_init_form();
+}
+function mce_init_form(){
+    jQuery(document).ready( function($) {
+      var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
+      var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+      $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
+      options = { url: 'http://michaelfabbri.us7.list-manage2.com/subscribe/post-json?u=a3adc128de2f0b11c72da16cf&id=ebc39a22ef&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
+                    beforeSubmit: function(){
+                        $('#mce_tmp_error_msg').remove();
+                        $('.datefield','#mc_embed_signup').each(
+                            function(){
+                                var txt = 'filled';
+                                var fields = new Array();
+                                var i = 0;
+                                $(':text', this).each(
+                                    function(){
+                                        fields[i] = this;
+                                        i++;
+                                    });
+                                $(':hidden', this).each(
+                                    function(){
+                                        var bday = false;
+                                        if (fields.length == 2){
+                                            bday = true;
+                                            fields[2] = {'value':1970};//trick birthdays into having years
+                                        }
+                                      if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
+                                        this.value = '';
+                      } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
+                                        this.value = '';
+                      } else {
+                          if (/\[day\]/.test(fields[0].name)){
+                                              this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;                         
+                          } else {
+                                              this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+                                          }
+                                      }
+                                    });
+                            });
+                        return mce_validator.form();
+                    }, 
+                    success: mce_success_cb
+                };
+      $('#mc-embedded-subscribe-form').ajaxForm(options);
+      
+      
+    });
+}
+function mce_success_cb(resp){
+    $('#mce-success-response').hide();
+    $('#mce-error-response').hide();
+    if (resp.result=="success"){
+        $('#mce-'+resp.result+'-response').show();
+        $('#mce-'+resp.result+'-response').html(resp.msg);
+        $('#mc-embedded-subscribe-form').each(function(){
+            this.reset();
+      });
+    } else {
+        var index = -1;
+        var msg;
+        try {
+            var parts = resp.msg.split(' - ',2);
+            if (parts[1]==undefined){
+                msg = resp.msg;
+            } else {
+                i = parseInt(parts[0]);
+                if (i.toString() == parts[0]){
+                    index = parts[0];
+                    msg = parts[1];
+                } else {
+                    index = -1;
+                    msg = resp.msg;
+                }
+            }
+        } catch(e){
+            index = -1;
+            msg = resp.msg;
+        }
+        try{
+            if (index== -1){
+                $('#mce-'+resp.result+'-response').show();
+                $('#mce-'+resp.result+'-response').html(msg);            
+            } else {
+                err_id = 'mce_tmp_error_msg';
+                html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
+                
+                var input_id = '#mc_embed_signup';
+                var f = $(input_id);
+                if (ftypes[index]=='address'){
+                    input_id = '#mce-'+fnames[index]+'-addr1';
+                    f = $(input_id).parent().parent().get(0);
+                } else if (ftypes[index]=='date'){
+                    input_id = '#mce-'+fnames[index]+'-month';
+                    f = $(input_id).parent().parent().get(0);
+                } else {
+                    input_id = '#mce-'+fnames[index];
+                    f = $().parent(input_id).get(0);
+                }
+                if (f){
+                    $(f).append(html);
+                    $(input_id).focus();
+                } else {
+                    $('#mce-'+resp.result+'-response').show();
+                    $('#mce-'+resp.result+'-response').html(msg);
+                }
+            }
+        } catch(e){
+            $('#mce-'+resp.result+'-response').show();
+            $('#mce-'+resp.result+'-response').html(msg);
+        }
+    }
+}
+
+</script>
+<!--End mc_embed_signup-->
+  </div>
+  <div class="pure-u-1-4">
+    <div class="social">
+      <h2>Follow me on twitter</h2>
+      <a href="#">@michaelsfabbri</a>
+      <h2>Like my page on Facebook</h2>
+      <a href="#"><img src="{% static 'gigs/FB-f-Logo__blue.png' %}"></a>
+    </div>
+  </div>
+  <div class="pure-u-1-6"></div>
+</div>
+<!-- <div class="pure-g-r bottom-content">
+  <div class="pure-u-1-6"></div>
+  <div class="pure-u-2-9 quoteunit">
+    <div class="pressquote">
+      <h3 class="title">&#8220;Hilarious, clever, &hellip; and completely unrepeatable!&#8221;</h3>
+      <div class="body">Michael Fabbri was the first turn… his take on how to use jam jar hats on other grocery items and door to door atheists got me giggling. The highlight was his opinion on the birth of Jesus and the Virgin Mary - hilarious, clever, sick and completely unrepeatable!
+      </div>
+      <div class="cite">BBC Online</div>
+    </div>
+  </div>
+  <div class="pure-u-2-9 quoteunit">
+    <div class="pressquote">
+      <h3 class="title">&#8220;Exceptionally funny&hellip; extremely sharp… hugely enjoyable&#8221;</h3>
+      <div class="body">LOOKING like an if.comedy best newcomer contender, Michael Fabbri has crafted an exceptionally funny and intelligent show about his stupidity. Oxygen-starved and forceps-delivered as a baby, dyslexic and with a genius brother, the 31-year-old has been waging a losing battle from the start.
+      </div>
+      <div class="cite">The Scotsman</div>
+    </div>
+  </div>
+  <div class="pure-u-2-9 quoteunit">
+    <div class="pressquote">
+      <h3 class="title">&#8220;Intelligence in spades&hellip; consummate idiot savant&#8221;</h3>
+      <div class="body">The loose theme of Fabbri's performance is his own stupidity, but it's apparent that here lies intelligence in spades. Verbally prat-falling like a consummate idiot savant, his material digresses from the quizzical to the political, with an oddball take on life as funny as it is plain strange.
+      </div>
+      <div class="cite">BBC Online</div>
+    </div>
+  </div>
+  <div class="pure-u-1-6"></div>
+</div> -->
 {% endblock %}
