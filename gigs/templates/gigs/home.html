@@ -4,21 +4,7 @@ Upcoming Gigs - Michael Fabbri.com
 {% endblock %}
 {% block content%}
 {% load staticfiles %}
-<div class="pure-g-r masthead">
-  <div class="pure-u-1-6"></div>
-  <div class="pure-u-1-3 masthead-logo">
-    <a href="/gigs/">
-      <h1>Michael Fabbri</h1>
-    </a>
-  </div>
-  <div class="pure-u-1-6"></div>
-  <div class="pure-u-1-3 masthead-menu">
-    <ul class="menu">
-      <li><a class="selected" href="#">Home</a></li>
-      <li><a href="#">Gigs</a></li>
-    </ul>
-  </div>
-</div>
+{% include 'gigs/masthead.html' with home_page=True %}
 <div class="pure-g-r top-content">
   <div class="pure-u-1-6"></div>
   <div class="pure-u-1-3 upcoming-gigs">
@@ -230,9 +216,9 @@ function mce_success_cb(resp){
   <div class="pure-u-1-4">
     <div class="social">
       <h2>Follow me on twitter</h2>
-      <a href="#">@michaelsfabbri</a>
+      <a href="https://twitter.com/michaelsfabbri" target="_blank">@michaelsfabbri</a>
       <h2>Like my page on Facebook</h2>
-      <a href="#"><img src="{% static 'gigs/FB-f-Logo__blue.png' %}"></a>
+      <a href="https://www.facebook.com/pages/Michael-Fabbri/38799171644" target="_blank"><img src="{% static 'gigs/FB-f-Logo__blue.png' %}"></a>
     </div>
   </div>
   <div class="pure-u-1-6"></div>

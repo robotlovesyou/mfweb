@@ -29,6 +29,13 @@ class PublicTests(TestCase):
         response = self.client.get(reverse('gigs:home'))
         self.assertEqual(response.status_code, 200)
 
+    def test_can_load_gigs_all(self):
+        """
+        Test that the all gigs page loads
+        """
+        response = self.client.get(reverse('gigs:all'))
+        self.assertEqual(response.status_code, 200)
+
 
 class AdminTests(TestCase):
     """

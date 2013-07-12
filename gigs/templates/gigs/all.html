@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+All Gigs - Michael Fabbri.com
+{% endblock %}
+{% block content%}
+{% load staticfiles %}
+{% include 'gigs/masthead.html' with gigs_page=True %}
+<div class="allgigs">
+  <div class="pure-g-r title-row">
+    <div class="pure-u-1-6"></div>
+    <div class="pure-u-2-3">
+      <h2>See me live at:</h2>
+    </div>
+    <div class="pure-u-1-6"></div>
+  </div>
+  <ul>
+    {% for gig in gigs %}
+    <li>
+      <div class="pure-g-r">
+        <div class="pure-u-1-6"></div>
+        <div class="pure-u-2-3">
+          <span class="title">{{gig.title}}</span> - <span class="date">{{gig.date | date:"l jS F"}}</span><span class="url">{% if gig.url %} - <a href="{{gig.url}}" target="_blank">website</a></span>{% endif %}
+        </div>
+        <div class="pure-u-1-6"></div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

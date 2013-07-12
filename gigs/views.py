@@ -27,6 +27,12 @@ class HomePageView(ListView):
     template_name = 'gigs/home.html'
 
 
+class AllGigsView(ListView):
+    context_object_name = 'gigs'
+    queryset = Gig.objects.filter(deleted=False).order_by('date')
+    template_name = 'gigs/all.html'
+
+
 class GigAdminListView(ListView):
     context_object_name = 'gigs'
     queryset = Gig.objects.filter(deleted=False).order_by('date')

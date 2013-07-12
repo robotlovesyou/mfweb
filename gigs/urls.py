@@ -7,6 +7,7 @@ from gigs import views
 urlpatterns = patterns(
     '',
     url(r'^$', views.HomePageView.as_view(), name='home'),
+    url(r'^all/$', views.AllGigsView.as_view(), name='all'),
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout_then_login, name='logout'),
     url(
