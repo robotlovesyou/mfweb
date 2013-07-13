@@ -160,7 +160,7 @@ LOGGING = {
     }
 }
 
-try:
-    from mfweb.local_settings import *
-except ImportError as e:
-    print ('Unable to load local_settings.py:', e)
+# try:
+#     from mfweb.local_settings import *
+# except ImportError as e:
+#     print ('Unable to load local_settings.py:', e)
