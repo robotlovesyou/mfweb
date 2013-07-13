@@ -1,7 +1,5 @@
 # Django settings for mfweb project.
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+import os
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -11,11 +9,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': '',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'mfweb',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
+        'USER': os.environ["MFWEB_DB_USER"],
+        'PASSWORD': os.environ["MFWEB_DB_PASSWORD"],
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
