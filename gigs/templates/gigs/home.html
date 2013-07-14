@@ -39,6 +39,7 @@ Upcoming Gigs - Michael Fabbri.com
         </div>  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
       </form>
     </div>
+<!--And now for about a bazillion lines of inline javascript from mailchimp...-->
 <script type="text/javascript">
 var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';
 try {
@@ -223,32 +224,5 @@ function mce_success_cb(resp){
   </div>
   <div class="pure-u-1-6"></div>
 </div>
-<!-- <div class="pure-g-r bottom-content">
-  <div class="pure-u-1-6"></div>
-  <div class="pure-u-2-9 quoteunit">
-    <div class="pressquote">
-      <h3 class="title">&#8220;Hilarious, clever, &hellip; and completely unrepeatable!&#8221;</h3>
-      <div class="body">Michael Fabbri was the first turn… his take on how to use jam jar hats on other grocery items and door to door atheists got me giggling. The highlight was his opinion on the birth of Jesus and the Virgin Mary - hilarious, clever, sick and completely unrepeatable!
-      </div>
-      <div class="cite">BBC Online</div>
-    </div>
-  </div>
-  <div class="pure-u-2-9 quoteunit">
-    <div class="pressquote">
-      <h3 class="title">&#8220;Exceptionally funny&hellip; extremely sharp… hugely enjoyable&#8221;</h3>
-      <div class="body">LOOKING like an if.comedy best newcomer contender, Michael Fabbri has crafted an exceptionally funny and intelligent show about his stupidity. Oxygen-starved and forceps-delivered as a baby, dyslexic and with a genius brother, the 31-year-old has been waging a losing battle from the start.
-      </div>
-      <div class="cite">The Scotsman</div>
-    </div>
-  </div>
-  <div class="pure-u-2-9 quoteunit">
-    <div class="pressquote">
-      <h3 class="title">&#8220;Intelligence in spades&hellip; consummate idiot savant&#8221;</h3>
-      <div class="body">The loose theme of Fabbri's performance is his own stupidity, but it's apparent that here lies intelligence in spades. Verbally prat-falling like a consummate idiot savant, his material digresses from the quizzical to the political, with an oddball take on life as funny as it is plain strange.
-      </div>
-      <div class="cite">BBC Online</div>
-    </div>
-  </div>
-  <div class="pure-u-1-6"></div>
-</div> -->
+{% include 'gigs/footer.html' with home_page=True %}
 {% endblock %}

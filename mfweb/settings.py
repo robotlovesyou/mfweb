@@ -15,8 +15,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'mfweb',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': os.environ["MFWEB_DB_USER"],
-        'PASSWORD': os.environ["MFWEB_DB_PASSWORD"],
+        'USER': os.environ.get("MFWEB_DB_USER"),
+        'PASSWORD': os.environ.get("MFWEB_DB_PASSWORD"),
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }

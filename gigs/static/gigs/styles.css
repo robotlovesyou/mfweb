@@ -174,69 +174,57 @@ body.gigs .mid-content .social a {
   font-weight: 100;
   font-size: 1.5em;
 }
-body.gigs .bottom-content {
-  border-top: 1px solid #2b538a;
-}
-body.gigs .bottom-content .quoteunit .pressquote {
-  margin-right: 20px;
-}
-body.gigs .bottom-content .quoteunit .pressquote .title {
-  color: #2b538a;
-  font-weight: 400;
-}
-body.gigs .bottom-content .quoteunit .pressquote .body {
+body.gigs .footer {
+  margin-top: 60px;
   color: #83a6d5;
-  font-weight: 100;
-  text-align: justify;
+  font-weight: 300;
 }
-body.gigs .bottom-content .quoteunit .pressquote .cite {
-  color: #2b538a;
-  margin-top: 5px;
-  font-weight: 100;
-  font-style: italic;
+body.gigs .footer a {
+  text-decoration: none;
+  color: #83a6d5;
 }
-body.gigs .bottom-content .quoteunit:nth-child(4) .pressquote {
-  margin-right: 0px;
+body.gigs .footer .dandm {
+  margin-left: 20px;
 }
-.allgigs .title-row {
+body.gigs .allgigs .title-row {
   background: #83a6d5;
 }
-.allgigs .title-row h2 {
+body.gigs .allgigs .title-row h2 {
   margin: 0px;
   padding: 5px 0px 5px 0px;
   color: #fff;
   font-weight: 500;
 }
-.allgigs ul {
+body.gigs .allgigs ul {
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
-.allgigs ul .title {
+body.gigs .allgigs ul .title {
   font-weight: 400;
 }
-.allgigs ul .date {
+body.gigs .allgigs ul .date {
   font-style: italic;
   font-weight: 300;
 }
-.allgigs ul .url a {
+body.gigs .allgigs ul .url a {
   font-weight: 100;
 }
-.allgigs ul li {
+body.gigs .allgigs ul li {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.allgigs ul li:nth-child(even) {
+body.gigs .allgigs ul li:nth-child(even) {
   background: #83a6d5;
   color: #fff;
 }
-.allgigs ul li:nth-child(even) a {
+body.gigs .allgigs ul li:nth-child(even) a {
   color: #fff;
 }
-.allgigs ul li:nth-child(odd) {
+body.gigs .allgigs ul li:nth-child(odd) {
   color: #83a6d5;
 }
-.allgigs ul li:nth-child(odd) a {
+body.gigs .allgigs ul li:nth-child(odd) a {
   color: #83a6d5;
 }
 @media (min-width: 768px) and (max-width: 979px) {
