@@ -60,10 +60,26 @@ if (!jqueryLoaded) {
         }    
     }
 }
-var script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
-head.appendChild(script);
+
+var loadValidator = function () {
+  try {
+        var jqueryLoaded=jQuery;
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
+        head.appendChild(script);  
+    } catch(err) {
+        setTimeout(loadValidator, 250);
+        return;
+    }
+}
+
+loadValidator();
+
+window.setTimeout(function () {
+  
+}, 100);
+
 var err_style = '';
 try{
     err_style = mc_custom_error_style;
