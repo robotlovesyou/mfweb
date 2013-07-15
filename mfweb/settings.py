@@ -25,7 +25,7 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/home/robotlovesu/var/mfweb/cahce',
+        'LOCATION': '/home/robotlovesu/var/mfweb/cache',
     }
 }
 
