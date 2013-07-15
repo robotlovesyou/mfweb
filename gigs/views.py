@@ -1,8 +1,6 @@
 # Create your views here.
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.views.generic.base import View
@@ -23,19 +21,19 @@ def csrf_render_to_response(request, template, context):
 
 class HomePageView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.filter(deleted=False).order_by('date')[:5]
+    queryset = Gig.objects.all_future_gigs()[:5]
     template_name = 'gigs/home.html'
 
 
 class AllGigsView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.filter(deleted=False).order_by('date')
+    queryset = Gig.objects.all_future_gigs()
     template_name = 'gigs/all.html'
 
 
 class GigAdminListView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.filter(deleted=False).order_by('date')
+    queryset = Gig.objects.all_future_gigs()
     template_name = 'gigs/admin_gig_list.html'
 
 

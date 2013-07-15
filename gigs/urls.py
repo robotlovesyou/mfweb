@@ -1,13 +1,23 @@
+from django.conf import settings
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login, logout_then_login
+from django.views.decorators.cache import cache_page
 
 from gigs import views
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.HomePageView.as_view(), name='home'),
-    url(r'^all/$', views.AllGigsView.as_view(), name='all'),
+    url(
+        r'^$',
+        cache_page(settings.CACHE_TIMEOUT)(views.HomePageView.as_view()),
+        name='home'
+    ),
+    url(
+        r'^all/$',
+        cache_page(settings.CACHE_TIMEOUT)(views.AllGigsView.as_view()),
+        name='all'
+    ),
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout_then_login, name='logout'),
     url(

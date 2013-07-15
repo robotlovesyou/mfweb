@@ -238,6 +238,11 @@ class GigModelTests(TestCase):
     """
     Model tests for the gig model and the gig model manager
     """
+    def create_test_gig(self):
+        return Gig.objects.create_gig(
+            'wibble', timezone.now() + datetime.timedelta(days=1)
+        )
+
     def test_can_instantiate(self):
         """
         Ensure we can instantiate the gig model
@@ -250,10 +255,8 @@ class GigModelTests(TestCase):
         Ensure that a gig instance validates with valid values
         """
 
-        gig = Gig(
-            title='wibble',
-            date=timezone.now() + datetime.timedelta(days=1)
-        )
+        gig = self.create_test_gig()
+
         gig.full_clean()
 
     def test_is_valid_with_optional_url(self):
@@ -307,9 +310,23 @@ class GigModelTests(TestCase):
         """
         Ensure that a gig can be marked as deleted
         """
-        gig = Gig.objects.create_gig(
-            'wibble', timezone.now() + datetime.timedelta(days=1)
-        )
+        gig = self.create_test_gig()
         gig.delete()
         gig_from_db = Gig.objects.get(pk=gig.pk)
         self.assertTrue(gig_from_db.deleted)
+
+    def test_all_future_gigs_returns_gigs(self):
+        """
+        Ensure that future gigs returns gigs
+        """
+        gig = self.create_test_gig()
+        self.assertEqual(
+            Gig.objects.all_future_gigs().count(),
+            1
+        )
+
+    def test_all_future_gigs_does_not_return_past_gigs(self):
+        gig = Gig(
+            title='pastgig',
+            date=timezone.now() - datetime.timedelta(days=1))
+        self.assertEqual(Gig.objects.all_future_gigs().count(), 0)

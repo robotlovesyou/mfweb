@@ -231,7 +231,11 @@ body.gigs .allgigs ul li:nth-child(odd) a {
 }
 @media (max-width:767px) {
   body.gigs .mid-content .social {
-    margin: 0px;
+    margin: 0px 0px 0px 3px;
     padding: 0px;
+  }
+  body.gigs .footer .copyright,
+  body.gigs .footer .dandm {
+    margin-left: 3px;
   }
 }

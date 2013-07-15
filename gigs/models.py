@@ -1,4 +1,8 @@
+from django.core.cache import cache
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.utils import timezone
 
 
 class GigManager(models.Manager):
@@ -16,6 +20,14 @@ class GigManager(models.Manager):
         )
         gig.save()
         return gig
+
+    def all_future_gigs(self):
+        """
+        return a queryset selecting all future gigs
+        """
+        return self.filter(
+            deleted=False,
+            date__gt=timezone.now()).order_by('date')
 
 
 class Gig(models.Model):
@@ -37,3 +49,11 @@ class Gig(models.Model):
     def delete(self):
         self.deleted = True
         self.save()
+
+
+@receiver(pre_save, sender=Gig)
+def clear_cache_on_gig_save(sender, **kwargs):
+    """
+    Clear the entire cache on model save. (Pretty blunt but updates are rare)
+    """
+    cache.clear()
