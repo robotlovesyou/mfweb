@@ -25,7 +25,7 @@ class HomePageView(ListView):
     template_name = 'gigs/home.html'
 
     def get_queryset(self):
-        return Gig.objects.all_future_gigs()
+        return Gig.objects.all_future_gigs()[:5]
 
 
 class AllGigsView(ListView):
