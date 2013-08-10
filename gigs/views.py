@@ -21,20 +21,29 @@ def csrf_render_to_response(request, template, context):
 
 class HomePageView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.all_future_gigs()[:5]
+    #queryset = Gig.objects.all_future_gigs()[:5]
     template_name = 'gigs/home.html'
+
+    def get_queryset(self):
+        return Gig.objects.all_future_gigs()
 
 
 class AllGigsView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.all_future_gigs()
+    #queryset = Gig.objects.all_future_gigs()
     template_name = 'gigs/all.html'
+
+    def get_queryset(self):
+        return Gig.objects.all_future_gigs()
 
 
 class GigAdminListView(ListView):
     context_object_name = 'gigs'
-    queryset = Gig.objects.all_future_gigs()
+    #queryset = Gig.objects.all_future_gigs()
     template_name = 'gigs/admin_gig_list.html'
+
+    def get_queryset(self):
+        return Gig.objects.all_future_gigs()
 
 
 class GigCreateView(CreateView):
